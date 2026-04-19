@@ -15,11 +15,11 @@
       security_group: " {{ sg_id }}"
       image_id: "{{ ami_id }}"
       name: "{{ item }}"   
-    tags:
-      project: roboshop
-      component: "{{ item }}"
-      Envrionment: "{{ env }}"
-      name: "{{ item }}-{{ env }}"
+      tags: 
+        project: "roboshop"
+        component: "{{ item }}"
+        Envrionment: "{{ env }}"
+        name: "{{ item }}-{{ env }}"
     loop: "{{ instances }}"
     register: ec2_output
 
