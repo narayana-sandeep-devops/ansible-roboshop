@@ -31,7 +31,7 @@
   - name: print the ec2 ec2_output
     ansible.builtin.debug:
       msg: "{{ ec2_output }}"
-      when: action == "create"
+      #when: action == "create"
 
 #Create 
   - name: Create route53 records
@@ -74,7 +74,7 @@
     loop: "{{ instances }}"
     when: action == "destroy"
 
-  - name: Teminate Ec2 instance
+  - name: Delete Ec2 instance
     amazon.aws.ec2_instance:
       state: abscent
       name: "{{ item }}-{{ env }}"
