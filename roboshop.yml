@@ -66,7 +66,7 @@
 
   - name: Delete route53 records
     amazon.aws.route53:
-      state: abscent
+      state: absent
       zone: "{{ domain }}"
       record: "roboshop-{{ env }}.{{ domain }}" #mongodb.sandeepinfo.online
       type: A
@@ -76,7 +76,7 @@
 
   - name: Delete Ec2 instance
     amazon.aws.ec2_instance:
-      state: abscent
+      state: absent
       name: "{{ item }}-{{ env }}"
     loop: "{{ instances }}"
     when: action == "destroy"
