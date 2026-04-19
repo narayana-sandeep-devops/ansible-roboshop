@@ -33,6 +33,7 @@
       msg: "{{ ec2_output }}"
       when: action == "create"
 
+#Create 
   - name: Create route53 records
     amazon.aws.route53:
       state: present
@@ -61,6 +62,8 @@
     - item.item == "frontend"
     - action == "create"
 
+#Destroy
+
   - name: Delete route53 records
     amazon.aws.route53:
       state: abscent
@@ -70,7 +73,6 @@
       ttl: 1
     loop: "{{ instances }}"
     when: action == "destroy"
-
 
   - name: Teminate Ec2 instance
     amazon.aws.ec2_instance:
