@@ -7,6 +7,7 @@
     sub_id: subnet-00cb815097e9622c0
     domain: sandeepinfo.online
     env: dev
+    action: create
     instances:
     - mongodb
     - catalogue
@@ -25,6 +26,7 @@
         name: "{{ item }}-{{ env }}"
     loop: "{{ instances }}"
     register: ec2_output
+    when: action == "create"
 
   - name: print the ec2 ec2_output
     ansible.builtin.debug:
@@ -53,4 +55,13 @@
       wait: true
       overwrite: true
     loop: "{{ ec2_output.results }}"
-    when: item.item == "frontend"
+    when: 
+    - item.item == "frontend"
+    - action == "create"
+
+  - name: Teminate Ec2 instance
+    amazon.aws.ec2_instance:
+      state: abscent
+      name: "{{ item }}-{{ env }}"
+    loop: "{{ instances }}"
+    
