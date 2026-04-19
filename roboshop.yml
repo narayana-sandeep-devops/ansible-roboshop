@@ -2,8 +2,8 @@
   hosts: all
   connection: local
   vars:
-    sg_id: "sg-0a28c2e9a030ff368"
-    ami_id: "ami-0220d79f3f480ecf5"
+    sg_id: sg-0a28c2e9a030ff368
+    ami_id: ami-0220d79f3f480ecf5
     env: dev
     instances:
     - mongodb
