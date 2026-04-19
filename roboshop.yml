@@ -5,6 +5,7 @@
     sg_id: sg-0a28c2e9a030ff368
     ami_id: ami-0220d79f3f480ecf5
     sub_id: subnet-00cb815097e9622c0
+    domain: sandeepinfo.online
     env: dev
     instances:
     - mongodb
@@ -29,3 +30,13 @@
     ansible.builtin.debug:
       msg: "{{ ec2_output }}"
 
+  - name: Create route53 records
+    amazon.aws.route53:
+      state: present
+      zone: "{{ domain }}"
+      record: "{{ item.item }}-{{ env }}.{{ domain }}"
+      type: A
+      ttl: 1
+      value: "{{item.instances[0].private_ip_address}}"
+      wait: true
+    loop: "{{ ec2_output.results }}"
