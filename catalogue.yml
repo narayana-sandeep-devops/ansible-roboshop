@@ -62,3 +62,6 @@
     ansible.builtin.debug:
       msg: "{{ catalogue_output }}"
   
+  - name: load the products
+    ansible.builtin.shell: mongosh --host MONGODB-SERVER-IPADDRESS
+    when: catalogue_output.stdout | int < 1
