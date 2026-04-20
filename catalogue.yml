@@ -32,7 +32,7 @@
     ansible.builtin.file:
       path: /tmp/catalogue.zip
       state: absent
-      
+
   - name: Download catalogue
     ansible.builtin.get_url:
       url: https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip
@@ -65,7 +65,7 @@
       state: present
   
   - name: check catalogue schema
-    ansible.builtin.command: mongosh --host "{{ MONGODB_HOST }}" --quiet --eval 'db.getMongo().getDBName().index("catalogue")'
+    ansible.builtin.command: mongosh --host "{{ MONGODB_HOST }}" --quiet --eval 'db.getMongo().getDBNames().index("catalogue")'
     register: catalogue_output
 
   - name: print the output
