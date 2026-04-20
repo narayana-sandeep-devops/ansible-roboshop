@@ -91,7 +91,7 @@
   - name: Delete Ec2 instance
     amazon.aws.ec2_instance:
       state: absent
-      name: "{{ item }}"
+      name: "{{ item }}-{{ env }}"
       wait: false
     loop: "{{ instances }}"
     when: action == "destroy"
