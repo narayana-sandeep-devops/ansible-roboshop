@@ -1,4 +1,4 @@
-#ansible-playbook -i localhost, -e instances=['mongodb', 'catalogue', 'frontend', 'redis', 'user', 'cart', 'mysql', 'shipping', 'rabbitmq', 'payment']
+#ansible-playbook -i localhost, -e 'instances=["mongodb", "catalogue", "frontend", "redis", "user", "cart", "mysql", "shipping", "rabbitmq", "payment"]''
 - name: create ec2 and r53 records
   hosts: all
   connection: local
