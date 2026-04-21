@@ -1,5 +1,6 @@
-- name: redis configure
-  hosts: redis-dev.sandeepinfo.online
+- name: configure redis server
+  hosts: redis
+  become: yes
   tasks:
   - name: enable redis
     ansible.builtin.command: dnf module enable redis:7 -y
