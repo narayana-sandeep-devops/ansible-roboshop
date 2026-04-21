@@ -18,9 +18,9 @@
 
   - name: repalce the line in a file
     ansible.builtin.file:
-     path: /etc/redis/redis.conf
-     regexp: 'protected-mode'
-     line: 'protected-mode on'
+      path: /etc/redis/redis.conf
+      regexp: 'protected-mode'
+      line: 'protected-mode on'
   
   - name: start and enable the service
     ansible.builtin.service:
