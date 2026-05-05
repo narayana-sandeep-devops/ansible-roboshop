@@ -1,29 +1,29 @@
 - name: configure redis server
-  hosts: redis
   become: yes
+  hosts: redis
   tasks:
-  - name: enable redis
+  - name: enable redis 7
     ansible.builtin.command: dnf module enable redis:7 -y
-  
-  - name: Install redis
+
+  - name: install redis
     ansible.builtin.dnf:
-      name: redis
+      name: redis 
       state: present
-  
-  - name: replace mongod conf file
+
+  - name: allow remote connections
     ansible.builtin.replace:
       path: /etc/redis/redis.conf
       regexp: '127.0.0.1'
       replace: '0.0.0.0'
 
-  - name: repalce the line in a file
+  - name: disable protected mode
     ansible.builtin.lineinfile:
       path: /etc/redis/redis.conf
       regexp: 'protected-mode'
       line: 'protected-mode no'
-  
-  - name: start and enable the service
-    ansible.builtin.service:
+
+  - name: start and enable redis
+    ansible.builtin.service: 
       name: redis
       state: restarted
       enabled: yes
